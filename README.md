@@ -19,11 +19,11 @@ TaskFlow adalah dashboard manajemen tugas pribadi untuk mencatat pekerjaan, mene
 - HTML5
 - CSS
 - JavaScript ES Modules (vanilla)
+
 - Tailwind CSS v4 (compiled by Vite)
 - Node.js and Express BFF
 - Supabase Auth untuk autentikasi pengguna
 - PostgreSQL dengan Row Level Security (RLS) untuk data tugas
-- Browser `localStorage` hanya untuk preferensi tema
 
 ## Menjalankan aplikasi
 
