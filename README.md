@@ -18,7 +18,7 @@ TaskFlow adalah dashboard manajemen tugas pribadi yang ringan untuk membantu And
 - HTML5
 - CSS
 - JavaScript ES Modules (vanilla)
-- Tailwind CSS melalui browser CDN
+- Tailwind CSS 
 - Browser `localStorage` untuk penyimpanan tugas dan preferensi tema
 
 ## Menjalankan aplikasi
