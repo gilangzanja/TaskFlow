@@ -12,18 +12,45 @@
         href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
         rel="stylesheet">
 
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-
-    <style type="text/tailwindcss">
-        @custom-variant dark (&:where(.dark, .dark *));
-  </style>
-
     <link rel="stylesheet" href="./assets/css/style.css" />
 </head>
 
 <body>
 
+    <main id="appLoading" class="app-loading" role="status">
+        <p>Connecting to TaskFlow…</p>
+    </main>
+
+    <main id="authScreen" class="auth-screen" hidden>
+        <section class="auth-card" aria-labelledby="authTitle">
+            <a href="#/dashboard" class="auth-brand">
+                <img class="taskflow-logo" src="./assets/images/taskflow-logo.png" alt="" />
+                <span>TaskFlow</span>
+            </a>
+            <h1 id="authTitle" class="auth-title">Welcome back</h1>
+            <p id="authDescription" class="auth-description"></p>
+            <p id="authError" class="auth-message auth-message--error" role="alert" hidden></p>
+            <p id="authSuccess" class="auth-message auth-message--success" role="status" hidden></p>
+            <form id="authForm" class="auth-form">
+                <div>
+                    <label for="authEmail">Email</label>
+                    <input id="authEmail" name="email" type="email" autocomplete="email" required />
+                </div>
+                <div>
+                    <label for="authPassword">Password</label>
+                    <input id="authPassword" name="password" type="password" minlength="8"
+                        autocomplete="current-password" required />
+                </div>
+                <button id="authSubmitButton" type="submit" class="auth-submit">Sign in</button>
+            </form>
+            <button id="authModeButton" type="button" class="auth-mode-button">
+                New to TaskFlow? Create an account
+            </button>
+        </section>
+    </main>
+
     <div id="app"
+        hidden
         class="min-h-screen bg-slate-50 text-slate-800 transition-colors duration-200 dark:bg-slate-950 dark:text-slate-100">
         <aside id="sidebar"
             class="sidebar-drawer fixed inset-y-0 left-0 z-40 flex w-64 flex-col border-r border-slate-200 bg-white px-5 py-6 dark:border-slate-800 dark:bg-slate-900">
@@ -116,17 +143,17 @@
                             </path>
                         </svg>
                     </button>
-                    <div class="hidden items-center gap-3 sm:flex">
-                        <div class="text-right">
-                            <p class="text-sm font-semibold">Workspace User</p>
-                            <p class="text-xs text-slate-500 dark:text-slate-400">
-                                Personal Account
-                            </p>
+                    <div class="flex items-center gap-2 sm:gap-3">
+                        <div class="hidden text-right sm:block">
+                            <p id="accountEmail" class="text-sm font-semibold">Signed in</p>
                         </div>
                         <div
                             class="flex h-10 w-10 items-center justify-center rounded-full bg-indigo-100 font-bold text-indigo-700 dark:bg-indigo-500/20 dark:text-indigo-300">
                             U
                         </div>
+                        <button id="signOutButton" type="button" class="sign-out-button">
+                            Sign out
+                        </button>
                     </div>
                 </div>
             </header>
@@ -359,14 +386,14 @@
                     <label for="taskDescription" class="mb-2 block text-sm font-medium">
                         Description
                     </label>
-                    <textarea id="taskDescription" rows="3" placeholder="Task description"
+                    <textarea id="taskDescription" rows="3" maxlength="2000" placeholder="Task description"
                         class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none placeholder:text-slate-400 focus:border-indigo-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:placeholder:text-slate-400"></textarea>
                 </div>
                 <div>
                     <label for="taskCategory" class="mb-2 block text-sm font-medium">
                         Category
                     </label>
-                    <input type="text" name="taskCategory" id="taskCategory" placeholder="Example: Frontend"
+                    <input type="text" name="taskCategory" id="taskCategory" maxlength="100" placeholder="Example: Frontend"
                         class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none placeholder:text-slate-400 focus:border-indigo-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:placeholder:text-slate-400">
                 </div>
                 <div id="taskStatusPriorityFields" class="grid grid-cols-1 gap-4 sm:grid-cols-2">
